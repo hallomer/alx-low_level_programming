@@ -1,4 +1,4 @@
-#iclude < unistd.h >
+#include <unistd.h>
 
 /**
  * main - Entry point
@@ -8,10 +8,10 @@
  * Return: 1 (fail)
 */
 
-ini main(void)
+int main(void)
 {
-	char que[] = " and that piece of art is useful\" - Dora Korpar, 2015-10-19 ";
+	char quo[] = " and that piece of art is useful\" - Dora Korpar, 2015-10-19 ";
 
-	write(1, que, 59);
+	write(1, quo, 59);
 	return (1);
 }
