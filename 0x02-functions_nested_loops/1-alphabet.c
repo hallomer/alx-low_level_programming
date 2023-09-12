@@ -1,13 +1,16 @@
-#include <main:wq.h>
-#include <stdio.h>
+#include "main.h"
 
 /**
- * main - prints alphabet in lowercase
+ * print_alphabet - prints alphabet in lowercase
  *
  * Return: Always 0
 */
-int main(void)
-{
-	void print_alphabet(void);
 
-	printf
+void print_alphabet(void)
+{
+	char i;
+
+	for (i = 'a' ; i <= 'z' ; i++)
+		_putchar(i);
+	_putchar('\n');
+}
