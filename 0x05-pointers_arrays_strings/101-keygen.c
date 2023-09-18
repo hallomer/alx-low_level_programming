@@ -12,18 +12,17 @@
 
 int main(void)
 {
-	char password[PASSWORD_LENGTH + 1];
-	int i;
-	
+	int sum;
+	char c;
+
 	srand(time(NULL));
 
-	for (i = 0; i < PASSWORD_LENGTH; i++)
+	while (sum <= 2645)
 	{
-		password[i] = rand() % ('~' - '!') + '!';
+		c = rand() % 128;
+		sum += c;
+		putchar(c);
 	}
-
-	password[PASSWORD_LENGTH] = '\0';
-	
-	printf("%s\n", password);
+	putchar(2772 - sum);
 	return (0);
 }
