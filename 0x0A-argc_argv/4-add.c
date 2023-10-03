@@ -38,7 +38,7 @@ void print_number(int n)
 {
 	int num_digits = 0;
 	int temp = n;
-	int dividor;
+	int divisor;
 	int digit;
 
 
