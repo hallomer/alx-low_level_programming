@@ -1,10 +1,10 @@
 #include "main.h"
 
 /**
- * _atoi - Converts a string to an integer
- * @s: The string to be converted
+ * _atoi - converts a string to an integer
+ * @s: string
  *
- * Return: The converted integer
+ * Return: integer
  */
 int _atoi(char *s)
 {
@@ -45,8 +45,8 @@ void print_number(int n)
 }
 /**
  * main - Entry point
- * @argc: The argument count
- * @argv: The argument vector
+ * @argc: count
+ * @argv: vector
  *
  * Return: 0 on success, 1 on error
  */

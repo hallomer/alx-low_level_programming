@@ -1,10 +1,58 @@
 #include "main.h"
 
 /**
- * _atoi - Converts a string to an integer
- * @s: The string to be converted
+ * is_digit - checks if a character is a digit
+ * @c: character to be checked
  *
- * Return: The converted integer
+ * Return: 1 if digit, 0 otherwise
+*/
+int is_digit(char c)
+{
+	return (c >= '0' && c <= '9');
+}
+
+/**
+ * is_positive_number - checks if a string is a positive number
+ * @s: string
+ *
+ * Return: 1 if positive, 0 otherwise
+*/
+int is_positive_number(char *s)
+{
+	int i = 0;
+
+	while (s[i])
+	{
+		if (!is_digit(s[i]))
+		{
+			return (0);
+		}
+		i++;
+	}
+
+	return (1);
+}
+
+/**
+ * print_number - prints a number
+ * @n: number
+ *
+ * Return: void
+*/
+void print_number(int n)
+{
+	if (n / 10 != 0)
+	{
+		print_number(n / 10);
+	}
+	_putchar(n % 10 + '0');
+}
+
+/**
+ * _atoi - Converts a string to an integer
+ * @s: string
+ *
+ * Return: integer
 */
 int _atoi(char *s)
 {
@@ -19,107 +67,46 @@ int _atoi(char *s)
 	}
 	for (; s[i] != '\0'; i++)
 	{
-		if (!is_digit(s[i]))
-		{
-			return (0);
-		}
 		result = result * 10 + (s[i] - '0');
 	}
 
 	return (sign * result);
 }
+
 /**
- * print_number - Prints an integer to the standard output (stdout)
- * @n: The integer to be printed
+ * main - Entry point
+ * @argc: count
+ * @argv: vector
  *
- * Return: void
-*/
-void print_number(int n)
-{
-	int num_digits = 0;
-	int temp = n;
-	int divisor;
-	int digit;
-
-
-	if (n < 0)
-	{
-	_putchar('-');
-	n = -n;
-	}
-
-	while (temp != 0)
-	{
-	temp /= 10;
-	num_digits++;
-	}
-
-	if (num_digits == 0)
-	{
-		_putchar('0');
-	}
-	else
-	{
-		divisor = 1;
-		while (num_digits > 1)
-		{
-			divisor *= 10;
-			num_digits--;
-		}
-
-		while (divisor != 0)
-		{
-			digit = n / divisor;
-			_putchar(digit + '0');
-			n %= divisor;
-			divisor /= 10;
-		}
-	}
-}
-/**
- * is_digit - Checks if a character is a digit
- * @c: The character to be checked
- *
- * Return: 1 if the character is a digit, 0 otherwise
-*/
-int is_digit(char c)
-{
-	return (c >= '0' && c <= '9');
-}
-/**
- * main - Entry point of the program
- * @argc: The number of command-line arguments
- * @argv: An array of strings representing the command-line arguments
- *
- * Return: 0 on success, 1 on error
+ * Return: 0 or 1
 */
 int main(int argc, char *argv[])
 {
-	int i, num, sum = 0;
+	int i, sum = 0;
 
 	if (argc == 1)
 	{
 		_putchar('0');
 		_putchar('\n');
-	return (0);
+		return (0);
 	}
-
 	for (i = 1; i < argc; i++)
 	{
-		num = _atoi(argv[i]);
-	if (num == 0 && !is_digit(argv[i][0]))
-	{
-		_putchar('E');
-		_putchar('r');
-		_putchar('r');
-		_putchar('o');
-		_putchar('r');
-		_putchar('\n');
-		return (1);
+		if (!is_positive_number(argv[i]))
+		{
+			_putchar('E');
+			_putchar('r');
+			_putchar('r');
+			_putchar('o');
+			_putchar('r');
+			_putchar('\n');
+			return (1);
+		}
+		sum += _atoi(argv[i]);
 	}
-	sum += num;
-	}
+
 	print_number(sum);
 	_putchar('\n');
+
 	return (0);
 }
