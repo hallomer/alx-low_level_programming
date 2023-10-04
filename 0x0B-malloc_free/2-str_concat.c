@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 /**
- * *str_concat - function that concatenates two strings
+ * *str_concat - concatenates two strings
  * @s1: string1
  * @s2: string2
  *
@@ -11,44 +11,43 @@
 
 char *str_concat(char *s1, char *s2)
 {
+	unsigned int length1 = 0, length2 = 0, i, j;
 	char *newstr;
-	int i, j, k;
 
-	if (s1 == NULL)
+	if (s1 != NULL)
 	{
-		s1 = " ";
-	}
-	if (s2 == NULL)
-	{
-		s2 = " ";
+		while (s1[length1])
+		{
+			length1++;
+		}
 	}
 
-	i = 0;
-	while (s1[i] != '\0')
+	if (s2 != NULL)
 	{
-		i++;
-	}
-	j = 0;
-	while (s2[j] != '\0')
-	{
-		j++;
+		while (s2[length2])
+		{
+			length2++;
+		}
 	}
 
-	newstr = malloc((i + j + 1) * sizeof(char));
+	newstr = malloc(sizeof(char) * (length1 + length2 + 1));
 
 	if (newstr == NULL)
 	{
 		return (NULL);
 	}
 
-	for (k = 0; k < i; k++)
+	for (i = 0; i < length1; i++)
 	{
-		newstr[k] = s1[k];
+		newstr[i] = s1[i];
 	}
-	for (k = 0; k < j; k++)
+
+	for (j = 0; j < length2; j++)
 	{
-		newstr[i + k] = s2[k];
+		newstr[i + j] = s2[j];
 	}
+
 	newstr[i + j] = '\0';
+
 	return (newstr);
 }
