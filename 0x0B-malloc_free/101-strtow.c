@@ -29,7 +29,7 @@ int count_words(char *str)
  * Return: allocated words array
 */
 
-static char **allocate_words(char *str, int word_count)
+char **allocate_words(char *str, int word_count)
 {
 	char **words;
 	int i, j, k, len;
