@@ -78,7 +78,7 @@ void _puts(char *str)
 */
 int main(int argc, char *argv[])
 {
-	int num1, num2, mul;
+	unsigned long int num1, num2, mul;
 
 	if (argc != 3 || !_atoi(argv[1]) || !_atoi(argv[2]))
 	{
@@ -88,12 +88,6 @@ int main(int argc, char *argv[])
 
 	num1 = _atoi(argv[1]);
 	num2 = _atoi(argv[2]);
-
-	if (num1 <= 0 || num2 <= 0)
-	{
-		_puts("Error");
-		exit(98);
-	}
 
 	mul = num1 * num2;
 
