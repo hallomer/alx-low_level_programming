@@ -2,96 +2,121 @@
 #include <stdlib.h>
 
 /**
- * is_digit - checks if a character is a digit
+ * _isdigit - checks if a character is a digit
  * @c: character
  *
  * Return: 1 if the character is a digit, 0 otherwise
 */
-int is_digit(char c)
+int _isdigit(char c)
 {
 	return (c >= '0' && c <= '9');
 }
 
 /**
- * _atoi - converts a string to an integer
- * @s: string
+ * _strlen - calculates the length of a string
+ * @str: string
  *
- * Return: integer
-*/
-int _atoi(char *s)
-{
-	int result = 0;
-	int i = 0;
-
-	while (s[i] != '\0')
-	{
-		if (is_digit(s[i]))
-		{
-			result = result * 10 + (s[i] - '0');
-		}
-		else
-		{
-			return (0);
-		}
-		i++;
-	}
-	return (result);
-}
-
-/**
- * print_number - prints a number
- * @n: number
- *
- * Return: void
-*/
-void print_number(int n)
-{
-	if (n / 10 != 0)
-	{
-		print_number(n / 10);
-	}
-	_putchar((n % 10) + '0');
-}
-/**
- * _puts - prints a string
- * @str: string to print
- *
- * Return: void
+ * Return: length of string
  */
-void _puts(char *str)
+int _strlen(char *str)
 {
-	int i = 0;
+	int len = 0;
 
-	while (str[i] != '\0')
-	{
-		_putchar(str[i]);
-		i++;
-	}
+	while (str[len])
+		len++;
+
+	return (len);
 }
 
 /**
- * main - multiplies two positive numbers
- * @argc: count
- * @argv: vector
- *
- * Return: integer
-*/
-int main(int argc, char *argv[])
+ * mul - multiplies two positive numbers
+ * @num1: first number
+ * @num2: second number
+ */
+void mul(char *num1, char *num2)
 {
-	unsigned long int num1, num2, mul;
+	int len1, len2, len, i, j, carry = 0, digit;
+	int *result;
 
-	if (argc != 3 || !_atoi(argv[1]) || !_atoi(argv[2]))
+	len1 = _strlen(num1);
+	len2 = _strlen(num2);
+	len = len1 + len2;
+
+	result = malloc(sizeof(int) * len);
+	if (result == NULL)
 	{
-		_puts("Error");
+		_putchar('E');
+		_putchar('r');
+		_putchar('r');
+		_putchar('o');
+		_putchar('r');
+		_putchar('\n');
 		exit(98);
 	}
+	for (i = 0; i < len; i++)
+		result[i] = 0;
 
-	num1 = _atoi(argv[1]);
-	num2 = _atoi(argv[2]);
+	for (i = len1 - 1; i >= 0; i--)
+	{
+		for (j = len2 - 1; j >= 0; j--)
+		{
+			digit = (num1[i] - '0') * (num2[j] - '0') + carry + result[i + j + 1];
+			carry = digit / 10;
+			result[i + j + 1] = digit % 10;
+		}
+		result[i] += carry;
+	}
+	i = 0;
+	while (i < len - 1 && result[i] == 0)
+		i++;
 
-	mul = num1 * num2;
+	for (; i < len; i++)
+		_putchar(result[i] + '0');
 
-	print_number(mul);
 	_putchar('\n');
+	free(result);
+}
+
+/**
+ * main - Entry point
+ * @argc: number of arguments
+ * @argv: array of argument strings
+ *
+ * Return: 0 on success, 98 on failure
+ */
+int main(int argc, char *argv[])
+{
+	int i, j;
+
+	if (argc != 3)
+	{
+		_putchar('E');
+		_putchar('r');
+		_putchar('r');
+		_putchar('o');
+		_putchar('r');
+		_putchar('\n');
+		return (98);
+	}
+
+	for (i = 1; i < argc; i++)
+	{
+		for (j = 0; argv[i][j]; j++)
+		{
+			if (!_isdigit(argv[i][j]))
+			{
+				_putchar('E');
+				_putchar('r');
+				_putchar('r');
+				_putchar('o');
+				_putchar('r');
+				_putchar('\n');
+				return (98);
+			}
+		}
+	}
+
+	mul(argv[1], argv[2]);
+
 	return (0);
 }
