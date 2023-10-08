@@ -6,7 +6,7 @@
  * @c: character
  *
  * Return: 1 if the character is a digit, 0 otherwise
-*/
+ */
 int _isdigit(char c)
 {
 	return (c >= '0' && c <= '9');
@@ -35,13 +35,12 @@ int _strlen(char *str)
  */
 void mul(char *num1, char *num2)
 {
-	int len1, len2, len, i, j, carry = 0, digit;
+	int len1, len2, len, i, j, k, carry, digit;
 	int *result;
 
 	len1 = _strlen(num1);
 	len2 = _strlen(num2);
 	len = len1 + len2;
-
 	result = malloc(sizeof(int) * len);
 	if (result == NULL)
 	{
@@ -58,6 +57,7 @@ void mul(char *num1, char *num2)
 
 	for (i = len1 - 1; i >= 0; i--)
 	{
+		carry = 0;
 		for (j = len2 - 1; j >= 0; j--)
 		{
 			digit = (num1[i] - '0') * (num2[j] - '0') + carry + result[i + j + 1];
