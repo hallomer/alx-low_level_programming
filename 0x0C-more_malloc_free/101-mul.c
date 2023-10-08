@@ -35,7 +35,7 @@ int _strlen(char *str)
  */
 void mul(char *num1, char *num2)
 {
-	int len1, len2, len, i, j, k, carry, digit;
+	int len1, len2, len, i, j, carry, digit;
 	int *result;
 
 	len1 = _strlen(num1);
