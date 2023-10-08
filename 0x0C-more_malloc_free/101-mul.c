@@ -70,24 +70,6 @@ void _puts(char *str)
 }
 
 /**
- * *allocate_memory - allocates memory for a string
- * @size: size of a string
- *
- * Return: a pointer to allocated memory
-*/
-char *allocate_memory(int size)
-{
-	char *ptr = malloc((size + 1) * sizeof(char));
-
-	if (ptr == NULL)
-	{
-		_puts("Error");
-		exit(1);
-	}
-	return (ptr);
-}
-
-/**
  * main - multiplies two positive numbers
  * @argc: count
  * @argv: vector
@@ -96,8 +78,7 @@ char *allocate_memory(int size)
 */
 int main(int argc, char *argv[])
 {
-	int num1, num2, mul, leng = 0, i, temp;
-	char *result;
+	int num1, num2, mul;
 
 	if (argc != 3 || !_atoi(argv[1]) || !_atoi(argv[2]))
 	{
@@ -116,24 +97,7 @@ int main(int argc, char *argv[])
 
 	mul = num1 * num2;
 
-	temp = mul;
-	while (temp != 0)
-	{
-		temp /= 10;
-		leng++;
-	}
-	result = allocate_memory(leng);
-
-	for (i = leng - 1; i >= 0; i--)
-	{
-		result[i] = (mul % 10) + '0';
-		mul /= 10;
-	}
-
-	result[leng - 1] = '\0';
-
-	_puts(result);
+	print_number(mul);
 	_putchar('\n');
-	free(result);
 	return (0);
 }
