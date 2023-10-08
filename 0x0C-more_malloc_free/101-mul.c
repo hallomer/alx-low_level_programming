@@ -53,15 +53,38 @@ void print_number(int n)
 	_putchar((n % 10) + '0');
 }
 /**
- * multiply - multiplies two positive numbers
- * @num1: first number
- * @num2: seconed number
+ * _puts - prints a string
+ * @str: string to print
  *
- * Return: result
-*/
-int multiply(int num1, int num2)
+ * Return: void
+ */
+void _puts(char *str)
 {
-	return (num1 * num2);
+	int i = 0;
+
+	while (str[i] != '\0')
+	{
+		_putchar(str[i]);
+		i++;
+	}
+}
+
+/**
+ * *allocate_memory - allocates memory for a string
+ * @size: size of a string
+ *
+ * Return: a pointer to allocated memory
+*/
+char *allocate_memory(int size)
+{
+	char *ptr = malloc((size + 1) * sizeof(char));
+
+	if (ptr == NULL)
+	{
+		_puts("Error");
+		exit(1);
+	}
+	return (ptr);
 }
 
 /**
@@ -73,25 +96,44 @@ int multiply(int num1, int num2)
 */
 int main(int argc, char *argv[])
 {
-	int num1, num2, mul;
+	int num1, num2, mul, leng = 0, i, temp;
+	char *result;
 
 	if (argc != 3 || !_atoi(argv[1]) || !_atoi(argv[2]))
 	{
-		_putchar('E');
-		_putchar('r');
-		_putchar('r');
-		_putchar('o');
-		_putchar('r');
-		_putchar('\n');
+		_puts("Error");
 		exit(98);
 	}
 
 	num1 = _atoi(argv[1]);
 	num2 = _atoi(argv[2]);
-	mul = multiply(num1, num2);
 
-	print_number(mul);
+	if (num1 <= 0 || num2 <= 0)
+	{
+		_puts("Error");
+		exit(98);
+	}
+
+	mul = num1 * num2;
+
+	temp = mul;
+	while (temp != 0)
+	{
+		temp /= 10;
+		leng++;
+	}
+	result = allocate_memory(leng);
+
+	for (i = leng - 1; i >= 0; i--)
+	{
+		result[i] = (mul % 10) + '0';
+		mul /= 10;
+	}
+
+	result[leng - 1] = '\0';
+
+	_puts(result);
 	_putchar('\n');
-
+	free(result);
 	return (0);
 }
