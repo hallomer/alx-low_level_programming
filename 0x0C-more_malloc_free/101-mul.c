@@ -52,6 +52,17 @@ void print_number(int n)
 	}
 	_putchar((n % 10) + '0');
 }
+/**
+ * multiply - multiplies two positive numbers
+ * @num1: first number
+ * @num2: seconed number
+ *
+ * Return: result
+*/
+int multiply(int num1, int num2)
+{
+	return (num1 * num2);
+}
 
 /**
  * main - multiplies two positive numbers
@@ -77,7 +88,7 @@ int main(int argc, char *argv[])
 
 	num1 = _atoi(argv[1]);
 	num2 = _atoi(argv[2]);
-	mul = num1 * num2;
+	mul = multiply(num1, num2);
 
 	print_number(mul);
 	_putchar('\n');
