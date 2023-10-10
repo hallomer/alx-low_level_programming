@@ -22,6 +22,13 @@ int _putchar(char c)
 
 int main(void)
 {
-	_putchar("%s\n", __FILE__);
+	int i;
+	char *filename = __FILE__;
+
+	for (i = 0; filename[i] != '\0'; i++)
+	{
+		_putchar(filename[i]);
+	}
+	_putchar('\n');
 	return (0);
 }
