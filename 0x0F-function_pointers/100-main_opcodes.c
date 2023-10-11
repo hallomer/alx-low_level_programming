@@ -10,13 +10,13 @@
 */
 int main(int argc, char *argv[])
 {
-	unsigned char *code;
+	char *code = (char *) main;
 	size_t size, i;
 
 	if (argc != 2)
 	{
 		printf("Error\n");
-		return (1);
+		exit(1);
 	}
 
 	size = atoi(argv[1]);
@@ -24,19 +24,17 @@ int main(int argc, char *argv[])
 	if (size < 0)
 	{
 		printf("Error\n");
-		return (2);
+		exit(2);
 	}
-
-	code = (unsigned char *)main;
 
 	for (i = 0; i < size; i++)
 	{
-		if (!(i % 2))
+		printf("%02x", code[i] & 0xFE);
+
+		if (i != size - 1)
 		{
 			printf(" ");
 		}
-
-		printf("%02x", code[i]);
 	}
 
 	printf("\n");
