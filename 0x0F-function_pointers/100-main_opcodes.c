@@ -10,8 +10,8 @@
 */
 int main(int argc, char *argv[])
 {
-	char *code = (char *) main;
-	size_t size, i;
+	char *opcode = (char *) main;
+	int size, i;
 
 	if (argc != 2)
 	{
@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
 
 	for (i = 0; i < size; i++)
 	{
-		printf("%02x", code[i] & 0xFE);
+		printf("%02x", opcode[i] & 0xFE);
 
 		if (i != size - 1)
 		{
