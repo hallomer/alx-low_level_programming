@@ -10,7 +10,7 @@
 */
 int main(int argc, char *argv[])
 {
-	char *opcode = (char *) main;
+	char *opcode;
 	int size, i;
 
 	if (argc != 2)
@@ -27,16 +27,16 @@ int main(int argc, char *argv[])
 		exit(2);
 	}
 
+	opcode = (char *)main;
+
 	for (i = 0; i < size; i++)
 	{
-		printf("%02x", opcode[i] & 0xFE);
-
-		if (i != size - 1)
+		printf("%.2hhx", opcode[i]);
+		if (i < size - 1)
 		{
 			printf(" ");
 		}
 	}
-
 	printf("\n");
 	return (0);
 }
