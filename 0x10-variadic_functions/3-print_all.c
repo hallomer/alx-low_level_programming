@@ -15,6 +15,8 @@ void print_all(const char * const format, ...)
 	va_list args;
 	char *str;
 
+	if (format != NULL)
+	{
 	va_start(args, format);
 
 	while (format[i])
@@ -46,4 +48,5 @@ void print_all(const char * const format, ...)
 	printf("\n");
 
 	va_end(args);
+	}
 }
