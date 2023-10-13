@@ -60,12 +60,19 @@ void print_string(va_list args)
 */
 void print_all(const char * const format, ...)
 {
-	int i = 0;
+	int i = 0, args_n;
 	va_list args;
 	void (*print_func)(va_list);
 
 	va_start(args, format);
-
+	while (format && format[i])
+	{
+		if (format[i] == 'c' || format[i] == 'i' ||
+				format[i] == 'f' || format[i] == 's')
+			args_n++;
+		i++;
+	}
+	i = 0;
 	while (format && format[i])
 	{
 		switch (format[i])
@@ -87,7 +94,7 @@ void print_all(const char * const format, ...)
 				continue;
 		}
 		print_func(args);
-		if (format[i + 1] != '\0')
+		if (i < args_n)
 			printf(", ");
 		i++;
 	}
