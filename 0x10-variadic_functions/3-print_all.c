@@ -15,12 +15,12 @@ void print_all(const char * const format, ...)
 	int i;
 	char c;
 	float f;
+	char *p_format = (char *) format;
 
 	va_start(args, format);
-
-	while (*format)
+	while (*p_format)
 	{
-		switch (*format)
+		switch (*p_format)
 		{
 			case 'c':
 				c = va_arg(args, int);
@@ -36,17 +36,17 @@ void print_all(const char * const format, ...)
 				break;
 			case 's':
 				s = va_arg(args, char *);
-				if (str == NULL)
+				if (s == NULL)
 					printf("nil");
 				printf("%s", s);
 				break;
 			default:
-				format++;
+				p_format++;
 				continue;
 		}
-		if (*(format + 1))
+		if (*(p_format + 1))
 			printf(", ");
-		format++;
+		p_format++;
 	}
 	printf("\n");
 	va_end(args);
