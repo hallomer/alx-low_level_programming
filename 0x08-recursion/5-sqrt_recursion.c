@@ -1,7 +1,7 @@
 #include "main.h"
 
 
-int _sqrt(int n, int start, int end);
+int _sqrt(int n, int i);
 
 /**
  * _sqrt_recursion - Returns the natural square root of a number
@@ -11,39 +11,24 @@ int _sqrt(int n, int start, int end);
 */
 int _sqrt_recursion(int n)
 {
-	if (n < 0)
-		return (-1);
-
-	if (n == 0 || n == 1)
-		return (n);
-
-	return (_sqrt(n, 1, n));
+	return (_sqrt(n, 1));
 }
 
 /**
- * _sqrt - Performs the actual calculation of the square root
+ * _sqrt - Performs the acutal calculation
  * @n: number
- * @start: starting point
- * @end: ending point
+ * @i: current value
  *
- * Return: square of n or (-1) if not found
+ * Return: square of n
 */
-int _sqrt(int n, int start, int end)
+int _sqrt(int n, int i)
 {
-	int mid_point = start + (end - start) / 2;
-	int square = mid_point * mid_point;
+	if (i * i == n)
+		return (i);
 
-	if (start <= end)
-	{
-		if (square == n)
-			return (mid_point);
+	else if (i * i > n)
+		return (-1);
 
-		else if (square > n)
-			return (_sqrt(n, start, mid_point - 1));
-
-		else
-			return (_sqrt(n, mid_point + 1, end));
-	}
-
-	return (-1);
+	else
+		return (_sqrt(i + 1, n));
 }
