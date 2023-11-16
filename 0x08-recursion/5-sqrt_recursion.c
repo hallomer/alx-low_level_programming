@@ -7,7 +7,7 @@ int _sqrt(int n, int start, int end);
  * _sqrt_recursion - Returns the natural square root of a number
  * @n: number
  *
- * Return: square of n, (n) if 0 or 1 and (-1) if n is negative
+ * Return: square of n, (-1) if n is negative
 */
 int _sqrt_recursion(int n)
 {
@@ -30,7 +30,7 @@ int _sqrt_recursion(int n)
 */
 int _sqrt(int n, int start, int end)
 {
-	int mid_point = (start + end) / 2;
+	int mid_point = start + (end - start) / 2;
 	int square = mid_point * mid_point;
 
 	if (start <= end)
