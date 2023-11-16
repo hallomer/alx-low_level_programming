@@ -18,7 +18,7 @@ int is_palindrome(char *s)
  * helper - Checks if a string is a palindrome or not
  * @start: first character
  * @end: last character
- * 
+ *
  * Return: (1) if a string is a palindrome and (0) if not
 */
 int helper(char *start, char *end)
