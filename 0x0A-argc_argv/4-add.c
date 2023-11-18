@@ -12,7 +12,7 @@
 int main(int argc, char *argv[])
 {
 	int i;
-	unsigned long int j, sum = 0;
+	unsigned int j, sum = 0;
 	char *k;
 
 	if (argc == 1)
@@ -26,13 +26,14 @@ int main(int argc, char *argv[])
 
 		for (j = 0; j < strlen(k); j++)
 		{
-			if (k[j] < '0' || k[j] > '9')
+			if (k[j] < 48 || k[j] > 57)
 			{
 				printf("Error\n");
 				return (1);
 			}
 		}
 		sum += atoi(k);
+		k++;
 	}
 
 	printf("%d\n", sum);
