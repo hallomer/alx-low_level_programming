@@ -11,8 +11,8 @@
 */
 int main(int argc, char *argv[])
 {
-	int i, sum = 0;
-	unsigned long int j;
+	int i;
+	unsigned long int j, sum = 0;
 	char *k;
 
 	if (argc == 1)
