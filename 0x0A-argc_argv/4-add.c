@@ -15,28 +15,28 @@ int main(int argc, char *argv[])
 	unsigned int j, sum = 0;
 	char *k;
 
-	if (argc == 1)
+	if (argc > 1)
 	{
-		printf("0\n");
-	}
-
-	for (i = 1; i < argc; i++)
-	{
-		k = argv[i];
-
-		for (j = 0; j < strlen(k); j++)
+		for (i = 1; i < argc; i++)
 		{
-			if (k[j] < 48 || k[j] > 57)
-			{
-				printf("Error\n");
-				return (1);
-			}
-		}
-		sum += atoi(k);
-		k++;
-	}
+			k = argv[i];
 
-	printf("%d\n", sum);
+			for (j = 0; j < strlen(k); j++)
+			{
+				if (k[j] < 48 || k[j] > 57)
+				{
+					printf("Error\n");
+					return (1);
+				}
+			}
+			sum += atoi(k);
+			k++;
+		}
+
+		printf("%d\n", sum);
+	}
+	else
+		printf("0\n");
 
 	return (0);
 }
