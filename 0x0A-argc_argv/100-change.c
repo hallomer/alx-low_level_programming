@@ -19,31 +19,31 @@ int main(int argc, char *argv[])
 	}
 
 	cents = atoi(argv[1]);
-	if (cents < 0)
-		printf("0\n");
 
 	while (cents > 0)
 	{
-		if (cents >= 25)
+		coins++;
+		if ((cents - 25) >= 0)
 		{
 			cents -= 25;
-			coins++;
+			continue;
 		}
-		else if (cents >= 10)
+		if ((cents - 10) >= 0)
 		{
 			cents -= 10;
-			coins++;
+			continue;
 		}
-		else if (cents >= 5)
+		if ((cents - 5) >= 0)
 		{
 			cents -= 5;
-			coins++;
+			continue;
 		}
-		else if (cents >= 1)
+		if ((cents - 2) >= 0)
 		{
 			cents -= 1;
-			coins++;
+			continue;
 		}
+		cents--;
 	}
 	printf("%d\n", coins);
 	return (0);
