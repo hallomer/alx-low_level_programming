@@ -12,15 +12,11 @@ int count(char *str)
 	int word_count = 0;
 	int i = 0;
 
-	while (str[i] == ' ')
-		i++;
-
 	while (str[i] != '\0')
 	{
 		if (str[i] != ' ')
 		{
 			word_count++;
-
 			while (str[i] != ' ' && str[i] != '\0')
 				i++;
 		}
