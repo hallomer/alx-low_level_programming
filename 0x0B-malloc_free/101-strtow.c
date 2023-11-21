@@ -69,7 +69,8 @@ char *extract(char *str, int start, int end)
 */
 char *trim_spaces(char *word)
 {
-	int len = 0, i;
+	int len = 0, i, word_length, j;
+	char *trimmed_word;
 
 	while (word[len] != '\0')
 		len++;
@@ -79,10 +80,20 @@ char *trim_spaces(char *word)
 	while (i >= 0 && word[i] == ' ')
 		i--;
 
-	word[i + 1] = '\0';
+	word_length = i + 1;
 
-	return (word);
+	trimmed_word = malloc((word_length + 1) * sizeof(char));
+
+	if (trimmed_word == NULL)
+		return (NULL);
+
+	for (j = 0; j < word_length; j++)
+		trimmed_word[j] = word[j];
+
+	trimmed_word[word_length] = '\0';
+	return (trimmed_word);
 }
+
 
 /**
  * strtow - splits a string into words
