@@ -89,7 +89,9 @@ char **allocate_words_array(int count)
  */
 void free_words_array(char **words, int count)
 {
-	for (int i = 0; i < count; i++)
+	int i;
+
+	for (i = 0; i < count; i++)
 		free(words[i]);
 
 	free(words);
