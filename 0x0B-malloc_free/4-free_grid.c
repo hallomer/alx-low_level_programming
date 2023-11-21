@@ -4,10 +4,10 @@
 
 /**
  * free_grid -  frees a 2 dimensional grid previously created by alloc_grid
- * @grid:
- * height:
- * 
- * Return: 
+ * @grid: grid to be freed
+ * height: of grid
+ *
+ * Return: void
 */
 void free_grid(int **grid, int height)
 {
