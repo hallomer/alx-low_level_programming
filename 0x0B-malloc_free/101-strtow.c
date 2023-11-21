@@ -2,151 +2,100 @@
 #include <stdlib.h>
 
 /**
- * count - count words
+ * str_len - Gets the length of a string
  * @str: string
  *
- * Return: word count
-*/
-int count(char *str)
-{
-	int word_count = 0;
-	int i = 0;
+ * Return: length
+ */
 
-	while (str[i] != '\0')
+int str_len(char *str)
+{
+	int len = 0;
+
+	while (*str && *str != ' ')
+	{
+		len++;
+		str++;
+	}
+	return (len);
+}
+
+/**
+ * word_count - Counts the number of words in a string
+ * @str: string
+ *
+ * Return: the number of words
+ */
+int word_count(char *str)
+{
+	int words = 0, len = 0, i = 0;
+
+	while (str[len])
+	{
+		len++;
+	}
+
+	while (i < len)
 	{
 		if (str[i] != ' ')
 		{
-			word_count++;
-			while (str[i] != ' ' && str[i] != '\0')
-				i++;
+			words++;
+			i += str_len(str + i);
 		}
 		else
 			i++;
+
 	}
-
-	return (word_count);
-}
-
-/**
- * **allocate - memory allocation
- * @word_count: size to allocated memory for
- *
- * Return: pointer
-*/
-char **allocate(int word_count)
-{
-	char **words = (char **)malloc(sizeof(char *) * (word_count));
 
 	return (words);
 }
 
 /**
- * *extract - extractes word
- * @str: string
- * @start: start of word
- * @end: end of word
+ * **strtow - Splits a string into words
+ * @str: the string to be split
  *
- * Return: pointer
-*/
-char *extract(char *str, int start, int end)
-{
-	int len = end - start + 1, i, j = 0;
-	char *word = (char *)malloc(sizeof(char) * (len + 1));
-
-	if (word == NULL)
-		return (NULL);
-
-
-	for (i = start; i <= end; i++)
-	{
-		word[j] = str[i];
-		j++;
-	}
-
-	word[j] = '\0';
-	return (word);
-}
-
-/**
- * *trim_spaces - trims trailing spaces
- * @word: word to trim
- *
- * Return: pointer
-*/
-char *trim_spaces(char *word)
-{
-	int len = 0, i, word_length, j;
-	char *trimmed_word;
-
-	while (word[len] != '\0')
-		len++;
-
-	i = len - 1;
-
-	while (i >= 0 && word[i] == ' ')
-		i--;
-
-	word_length = i + 1;
-
-	trimmed_word = malloc((word_length + 1) * sizeof(char));
-
-	if (trimmed_word == NULL)
-		return (NULL);
-
-	for (j = 0; j < word_length; j++)
-		trimmed_word[j] = word[j];
-
-	trimmed_word[word_length] = '\0';
-	return (trimmed_word);
-}
-
-
-/**
- * strtow - splits a string into words
- * @str: string to be split
- *
- * Return: a pointer to an array of strings, or NULL if it fails
-*/
+ * Return: pointer to an array of words or NULL if it fails
+ */
 char **strtow(char *str)
 {
-	int word_count, i, j = 0, start = 0;
-	char **words;
+	int words, w = 0, letters, i, j;
+	char **strings;
 
-	if (str == NULL || *str == '\0')
+	if (str == NULL || str[0] == '\0')
+		return (NULL);
+	words = word_count(str);
+	if (words == 0)
+		return (NULL);
+	strings = malloc(sizeof(char *) * (words + 1));
+	if (strings == NULL)
 		return (NULL);
 
-	word_count = count(str);
-	words = allocate(word_count);
-
-	if (words == NULL)
-		return (NULL);
-
-	while (str[start] == ' ')
-		start++;
-
-	for (i = start; str[i] != '\0'; i++)
+	while (*str)
 	{
-		if (str[i] == ' ')
+		if (*str != ' ')
 		{
-			while (str[i] == ' ')
-				i++;
-
-			if (str[i] != '\0')
+			letters = str_len(str);
+			strings[w] = malloc(sizeof(char) * (letters + 1));
+			if (strings[w] == NULL)
 			{
-				words[j] = extract(str, start, i - 1);
-				words[j] = trim_spaces(words[j]);
-				j++;
-				start = i;
+				for (i = 0; i < w; i++)
+				{
+					for (j = 0; j < str_len(strings[i]); j++)
+						free(strings[i] + j);
+					free(strings[i]);
+				}
+				free(strings);
+				return (NULL);
 			}
+			for (i = 0; i < letters; i++)
+				strings[w][i] = str[i];
+			strings[w][letters] = '\0';
+			w++;
+			str += letters;
 		}
+		else
+			str++;
 	}
-
-	if (start < i)
-	{
-		words[j] = extract(str, start, i - 1);
-		words[j] = trim_spaces(words[j]);
-		j++;
-	}
-	words[j] = NULL;
-	return (words);
+	strings[w] = NULL;
+	return (strings);
 }
