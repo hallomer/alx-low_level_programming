@@ -5,7 +5,7 @@
 /**
  * free_grid -  frees a 2 dimensional grid previously created by alloc_grid
  * @grid: grid to be freed
- * height: of grid
+ * @height: of grid
  *
  * Return: void
 */
