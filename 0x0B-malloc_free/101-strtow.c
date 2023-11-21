@@ -35,7 +35,7 @@ int count(char *str)
 */
 char **allocate(int word_count)
 {
-	char **words = (char **)malloc(sizeof(char *) * (word_count + 1));
+	char **words = (char **)malloc(sizeof(char *) * (word_count));
 
 	return (words);
 }
