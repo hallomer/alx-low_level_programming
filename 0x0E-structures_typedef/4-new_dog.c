@@ -2,7 +2,7 @@
 #include "dog.h"
 
 int _strlen(char *str);
-char *_strcpy(char *dest, char *src);
+void _strcpy(char *dest, char *src);
 
 /**
  * new_dog - A function that creates a new dog
@@ -16,7 +16,7 @@ dog_t *new_dog(char *name, float age, char *owner)
 {
 	dog_t *new_dog;
 
-	new_dog = malloc(sizeof(dog_t));
+	new_dog = (dog_t *)malloc(sizeof(dog_t));
 	if (new_dog == NULL)
 		return (NULL);
 
@@ -51,14 +51,14 @@ dog_t *new_dog(char *name, float age, char *owner)
 
 int _strlen(char *str)
 {
-	int length = 0;
+	int len = 0;
 
-	while (*str != '\0')
+	while (str[len] != '\0')
 	{
-		length++;
+		len++;
 	}
 
-	return (length);
+	return (len);
 }
 
 /**
@@ -66,16 +66,17 @@ int _strlen(char *str)
  * @dest: destination
  * @src: source
  *
- * Return: destination
+ * Return: nothing
 */
-char *_strcpy(char *dest, char *src)
+void _strcpy(char *dest, char *src)
 {
-	int i;
-	int length = _strlen(src);
+	int i = 0;
 
-	for (i = 0; i <= length; i++)
+	while (src[i] != '\0')
 	{
 		dest[i] = src[i];
+		i++;
 	}
-	return (dest);
+
+	dest[i] = '\0';
 }
