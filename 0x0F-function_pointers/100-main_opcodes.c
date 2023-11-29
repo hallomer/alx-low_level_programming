@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
 	{
 		printf("%.2hhx", opcode[i]);
 
-		if (i < n - 1)
+		if (i < num_of_bytes - 1)
 			printf(" ");
 	}
 
