@@ -58,7 +58,7 @@ int main(int argc, char *argv[])
 	}
 
 	file_to = open(argv[2], O_WRONLY | O_CREAT |
-			O_TRUNC, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
+	O_TRUNC, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
 	if (file_to == -1)
 	{
 		dprintf(2, "Error: Can't write to %s\n", argv[2]);
